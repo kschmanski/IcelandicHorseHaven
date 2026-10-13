@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Icelandic Horse Haven</title>
+  <meta name="description" content="Icelandic Horse Haven — a rescue and sanctuary for Icelandic horses. Our new website is coming soon.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4efe6;
+      --ink: #2b2a26;
+      --muted: #6b675d;
+      --accent: #4f6b5a;
+      --hill-back: #c9d3c6;
+      --hill-front: #9fb3a2;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1d211f;
+        --ink: #ece7dc;
+        --muted: #a9a597;
+        --accent: #9cc2a8;
+        --hill-back: #2c3631;
+        --hill-front: #374740;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Inter", system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 1.25rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(2.4rem, 7vw, 4.5rem);
+      line-height: 1.05;
+      max-width: 14ch;
+    }
+    p.lede {
+      margin-top: 1.25rem;
+      font-size: clamp(1rem, 2.4vw, 1.2rem);
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 38ch;
+    }
+    .badge {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.6rem 1.2rem;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    .hills {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .hills .back { fill: var(--hill-back); }
+    .hills .front { fill: var(--hill-front); }
+    footer {
+      background: var(--hill-front);
+      color: var(--ink);
+      text-align: center;
+      font-size: 0.85rem;
+      padding: 0 1rem 1.5rem;
+      margin-top: -1px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Rescue &amp; Sanctuary</div>
+    <h1>Icelandic Horse Haven</h1>
+    <p class="lede">A safe, lifelong home for Icelandic horses in need. Our new website is on its way — thank you for your patience.</p>
+    <span class="badge">Coming soon</span>
+  </main>
+
+  <svg class="hills" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
+    <path class="back" d="M0,140 C180,80 320,60 520,110 C700,155 860,70 1040,60 C1200,52 1330,100 1440,120 L1440,220 L0,220 Z"/>
+    <path class="front" d="M0,180 C220,130 420,150 640,170 C860,190 1080,120 1280,140 C1360,148 1410,160 1440,165 L1440,220 L0,220 Z"/>
+  </svg>
+  <footer>
+    &copy; <span id="year">2026</span> Icelandic Horse Haven
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
