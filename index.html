@@ -139,7 +139,11 @@
         <div class="eyebrow">Stay in touch</div>
         <h2>Subscribe for Updates</h2>
         <p class="lede" style="margin:0.75rem auto 0">Hear about horses in need, upcoming events, and how the haven is growing.</p>
-        <form class="form" data-form="Newsletter signup">
+        <form class="form" data-form="Newsletter signup" data-subscribe>
+          <div class="visually-hidden" aria-hidden="true">
+            <label for="nl-honey">Leave this field empty</label>
+            <input id="nl-honey" name="_honey" type="text" tabindex="-1" autocomplete="off">
+          </div>
           <div class="form-row">
             <div class="field"><label for="nl-first">First name <span class="req">*</span></label><input id="nl-first" name="first" type="text" autocomplete="given-name" required></div>
             <div class="field"><label for="nl-last">Last name</label><input id="nl-last" name="last" type="text" autocomplete="family-name"></div>

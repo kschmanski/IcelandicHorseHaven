@@ -9,6 +9,11 @@ const CONFIG = {
   tagline: "Horse Sanctuary",
   // TODO: confirm the public contact address before launch.
   email: "info@icelandichorsehaven.org",
+  // Where the "Subscribe for Updates" form sends signups. FormSubmit emails each
+  // one to the address in the URL. After activating, you can swap the address
+  // for the random alias FormSubmit gives you so it isn't in the page source.
+  // Replace with a newsletter service's endpoint once one is chosen.
+  subscribeEndpoint: "https://formsubmit.co/ajax/info@icelandichorsehaven.org",
   phone: "",
   location: "United States",
   // Leave a URL empty to hide that icon.
@@ -232,7 +237,7 @@ function formToText(form) {
   const lines = [];
   const seen = new Set();
   form.querySelectorAll("input, select, textarea").forEach(el => {
-    if (!el.name || seen.has(el.name) || el.type === "submit") return;
+    if (!el.name || el.name.startsWith("_") || seen.has(el.name) || el.type === "submit") return;
     const values = [...form.querySelectorAll(`[name="${el.name}"]`)]
       .filter(f => !["checkbox", "radio"].includes(f.type) || f.checked)
       .map(f => f.value.trim())
@@ -256,14 +261,18 @@ function showStatus(form, html) {
   status.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
+function labelFields(form) {
+  form.querySelectorAll("[name]").forEach(el => {
+    if (!el.dataset.label) {
+      const label = (el.id && form.querySelector(`label[for="${el.id}"]`)) || el.closest("fieldset")?.querySelector("legend");
+      if (label) el.dataset.label = label.textContent.replace("*", "").trim();
+    }
+  });
+}
+
 function setupForms() {
-  document.querySelectorAll("form[data-form]").forEach(form => {
-    form.querySelectorAll("[name]").forEach(el => {
-      if (!el.dataset.label) {
-        const label = (el.id && form.querySelector(`label[for="${el.id}"]`)) || el.closest("fieldset")?.querySelector("legend");
-        if (label) el.dataset.label = label.textContent.replace("*", "").trim();
-      }
-    });
+  document.querySelectorAll("form[data-form]:not([data-subscribe])").forEach(form => {
+    labelFields(form);
 
     form.addEventListener("submit", event => {
       event.preventDefault();
@@ -275,6 +284,74 @@ function setupForms() {
         Use the button below to send this through your email app, or write to us at
         <a href="mailto:${CONFIG.email}">${CONFIG.email}</a>.</p>
         <a class="btn" href="${href}">Send by email</a>`);
+    });
+  });
+}
+
+/* ---------- Subscribe form ----------
+ * Placeholder until a newsletter service is chosen: each signup is emailed to
+ * CONFIG.email through CONFIG.subscribeEndpoint, so the owner can collect them.
+ * If the request fails, the visitor is offered the same "Send by email" fallback
+ * as the other forms, so a signup is never silently lost.
+ */
+
+function setupSubscribe() {
+  document.querySelectorAll("form[data-subscribe]").forEach(form => {
+    labelFields(form);
+    const button = form.querySelector('button[type="submit"]');
+    const buttonText = button.textContent;
+
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      // Bots tend to fill every field, including the hidden one.
+      if (form.elements._honey?.value) {
+        showStatus(form, "<p><strong>Thank you!</strong> You’re on the list.</p>");
+        return;
+      }
+
+      const first = form.elements.first?.value.trim() || "";
+      const last = form.elements.last?.value.trim() || "";
+      const email = form.elements.email.value.trim();
+      const fullName = [first, last].filter(Boolean).join(" ") || email;
+
+      button.disabled = true;
+      button.textContent = "Subscribing…";
+
+      try {
+        if (!CONFIG.subscribeEndpoint) throw new Error("No subscribe endpoint configured");
+        const response = await fetch(CONFIG.subscribeEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            _subject: `New subscriber: ${fullName}`,
+            _template: "table",
+            _captcha: "false",
+            message: `${fullName} (${email}) wants to subscribe to ${CONFIG.name} updates.`,
+            "First name": first,
+            "Last name": last,
+            email
+          })
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || String(result.success) === "false") {
+          throw new Error(result.message || `Request failed (${response.status})`);
+        }
+
+        form.reset();
+        showStatus(form, `<p><strong>Thank you for subscribing!</strong> We’ll be in touch with updates from the haven.</p>`);
+      } catch (error) {
+        console.warn("Subscribe failed:", error);
+        const href = mailtoLink(`${form.dataset.form} — ${CONFIG.name}`, formToText(form));
+        showStatus(form, `
+          <p><strong>Sorry, that didn’t go through.</strong> You can send your signup by email instead,
+          or write to us at <a href="mailto:${CONFIG.email}">${CONFIG.email}</a>.</p>
+          <a class="btn" href="${href}">Send by email</a>`);
+      } finally {
+        button.disabled = false;
+        button.textContent = buttonText;
+      }
     });
   });
 }
@@ -344,4 +421,5 @@ renderFooter();
 fillContactDetails();
 setupNav();
 setupForms();
+setupSubscribe();
 setupDonate();
