@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Support | Icelandic Horse Haven</title>
+  <meta name="description" content="Request help for an Icelandic horse in the United States, from vet and hoof care to feed, boarding, transport, foster care and rehoming.">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <div class="eyebrow">Request support</div>
+        <h1>Need Help With an Icelandic Horse?</h1>
+        <p class="lede">Use this form to request help for an Icelandic horse in the United States. Tell us what is needed and how we may be able to help, whether that’s veterinary or hoof care, feed, boarding, transport, foster care, or finding the horse a new home.</p>
+        <div class="btn-row"><a class="btn" href="#request">Start a support request</a></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head"><h2>What to Expect</h2></div>
+        <ol class="steps">
+          <li><h3>Tell us what’s needed</h3><p>Share the horse’s situation and the kind of help you’re asking for using the form below.</p></li>
+          <li><h3>We review and follow up</h3><p>We’ll be in touch to talk it through, and we may ask for more information, photos, estimates, or records.</p></li>
+          <li><h3>Agree on a plan</h3><p>Any approved support, payment arrangements, or placement terms are confirmed with you separately.</p></li>
+          <li><h3>Stay connected</h3><p>We’re happy to keep in touch and hear how the horse is doing.</p></li>
+        </ol>
+        <div class="card mt-2" style="border-left:4px solid var(--warm)">
+          <h3>Is a horse in immediate danger?</h3>
+          <p>This form is not an emergency response service. For an urgent medical concern, contact a veterinarian directly. If a horse is injured, being neglected, or at risk of going to auction, contact your local animal control or law enforcement right away, then let us know.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-band" id="request">
+      <div class="container narrow">
+        <div class="section-head">
+          <h2>Support Request</h2>
+          <p class="lede">Fields marked <span class="req">*</span> are required. Complete the sections that apply, and write “not applicable” or “unknown” where needed.</p>
+          <p class="muted">Submitting a request does not guarantee assistance. Support depends on available funds, space, services, and the horse’s needs.</p>
+        </div>
+        <form class="card form" data-form="Support request">
+          <div class="visually-hidden" aria-hidden="true">
+            <label for="rs-honey">Leave this field empty</label>
+            <input id="rs-honey" name="_honey" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
+          <h3>Applicant information</h3>
+          <div class="form-row">
+            <div class="field"><label for="rs-name">Name <span class="req">*</span></label><input id="rs-name" name="name" type="text" autocomplete="name" required></div>
+            <div class="field"><label for="rs-org">Organization or farm, if applicable</label><input id="rs-org" name="organization" type="text" autocomplete="organization"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="rs-phone">Phone <span class="req">*</span></label><input id="rs-phone" name="phone" type="tel" autocomplete="tel" required></div>
+            <div class="field"><label for="rs-email">Email <span class="req">*</span></label><input id="rs-email" name="email" type="email" autocomplete="email" required></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="rs-city">City and state <span class="req">*</span></label><input id="rs-city" name="city" type="text" required></div>
+            <div class="field"><label for="rs-zip">ZIP code <span class="req">*</span></label><input id="rs-zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" required></div>
+          </div>
+          <fieldset class="field">
+            <legend>Preferred contact <span class="req">*</span></legend>
+            <div class="checks checks-grid">
+              <label><input type="radio" name="contact" value="Phone call" required> Phone call</label>
+              <label><input type="radio" name="contact" value="Text"> Text</label>
+              <label><input type="radio" name="contact" value="Email"> Email</label>
+            </div>
+          </fieldset>
+          <fieldset class="field">
+            <legend>Your role <span class="req">*</span></legend>
+            <div class="checks checks-grid">
+              <label><input type="radio" name="role" value="Owner" required> Owner</label>
+              <label><input type="radio" name="role" value="Caregiver"> Caregiver</label>
+              <label><input type="radio" name="role" value="Rescue representative"> Rescue representative</label>
+              <label><input type="radio" name="role" value="Other"> Other</label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="rs-authority">If you’re not the owner, explain your role and authority to request help <span class="req">*</span></label>
+            <textarea id="rs-authority" name="authority" data-required-unless="role=Owner"></textarea>
+          </div>
+
+          <h3 class="mt-1">Horse information</h3>
+          <p class="muted">If you need help with more than one horse, please send a separate request for each horse.</p>
+          <div class="form-row">
+            <div class="field"><label for="rs-horse">Horse’s name <span class="req">*</span></label><input id="rs-horse" name="horse" type="text" required></div>
+            <div class="field"><label for="rs-age">Age or birth year <span class="req">*</span></label><input id="rs-age" name="age" type="text" required></div>
+          </div>
+          <fieldset class="field">
+            <legend>Sex <span class="req">*</span></legend>
+            <div class="checks checks-grid">
+              <label><input type="radio" name="sex" value="Mare" required> Mare</label>
+              <label><input type="radio" name="sex" value="Gelding"> Gelding</label>
+              <label><input type="radio" name="sex" value="Stallion"> Stallion</label>
+              <label><input type="radio" name="sex" value="Unknown"> Unknown</label>
+            </div>
+          </fieldset>
+          <div class="field"><label for="rs-registration">Registration or microchip number, if known</label><input id="rs-registration" name="registration" type="text"></div>
+          <div class="field">
+            <label for="rs-location">Current location or boarding facility, city and state <span class="req">*</span></label>
+            <textarea id="rs-location" name="location" required></textarea>
+          </div>
+          <div class="field">
+            <label for="rs-owner">Owner’s name and contact, if different from you <span class="req">*</span></label>
+            <textarea id="rs-owner" name="owner" data-required-unless="role=Owner"></textarea>
+          </div>
+
+          <h3 class="mt-1">Type of help and timing</h3>
+          <fieldset class="field" data-require-one>
+            <legend>Type of help needed <span class="req">*</span></legend>
+            <p class="hint">Select all that apply. Availability of any particular type of help is not guaranteed.</p>
+            <div class="checks checks-grid">
+              <label><input type="checkbox" name="help" value="Veterinary care or medication"> Veterinary care or medication</label>
+              <label><input type="checkbox" name="help" value="Hoof care"> Hoof care</label>
+              <label><input type="checkbox" name="help" value="Dental care"> Dental care</label>
+              <label><input type="checkbox" name="help" value="Hay or feed"> Hay or feed</label>
+              <label><input type="checkbox" name="help" value="Supplies or equipment"> Supplies or equipment</label>
+              <label><input type="checkbox" name="help" value="Temporary boarding"> Temporary boarding</label>
+              <label><input type="checkbox" name="help" value="Transportation"> Transportation</label>
+              <label><input type="checkbox" name="help" value="Foster care"> Foster care</label>
+              <label><input type="checkbox" name="help" value="Rehoming or placement assistance"> Rehoming or placement assistance</label>
+              <label><input type="checkbox" name="help" value="Care guidance or referrals"> Care guidance or referrals</label>
+              <label><input type="checkbox" name="help" value="Other"> Other</label>
+            </div>
+          </fieldset>
+          <div class="field"><label for="rs-help-other">If other, what kind of help?</label><input id="rs-help-other" name="help_other" type="text"></div>
+          <div class="form-row">
+            <div class="field"><label for="rs-needed-by">Help needed by <span class="req">*</span></label><input id="rs-needed-by" name="needed_by" type="text" placeholder="A date, or “as soon as possible”" required></div>
+            <div class="field"><label for="rs-duration">Expected duration</label><input id="rs-duration" name="duration" type="text" placeholder="e.g. one visit, 3 months, ongoing"></div>
+          </div>
+          <div class="field">
+            <label for="rs-safety">Is the horse currently safe with access to food, water, and shelter? Describe any immediate concern and who is helping now. <span class="req">*</span></label>
+            <textarea id="rs-safety" name="safety" required></textarea>
+          </div>
+
+          <h3 class="mt-1">Circumstances and requested support</h3>
+          <div class="field">
+            <label for="rs-circumstances">What has led you to seek help, and what would you like Icelandic Horse Haven to provide? <span class="req">*</span></label>
+            <p class="hint">Share only the personal details needed to explain your request.</p>
+            <textarea id="rs-circumstances" name="circumstances" rows="6" required></textarea>
+          </div>
+
+          <h3 class="mt-1">Costs and other resources</h3>
+          <p class="muted">For financial requests, list estimated costs. For other support, describe the quantity or service needed.</p>
+          <div class="form-row cost-row">
+            <div class="field"><label for="rs-cost1">Expense or service</label><input id="rs-cost1" name="cost1" type="text" data-label="Expense or service 1"></div>
+            <div class="field"><label for="rs-cost1-total">Total cost</label><input id="rs-cost1-total" name="cost1_total" type="text" inputmode="decimal" placeholder="$" data-label="Expense 1 total cost"></div>
+            <div class="field"><label for="rs-cost1-requested">Amount requested</label><input id="rs-cost1-requested" name="cost1_requested" type="text" inputmode="decimal" placeholder="$" data-label="Expense 1 amount requested"></div>
+          </div>
+          <div class="form-row cost-row">
+            <div class="field"><label for="rs-cost2">Expense or service</label><input id="rs-cost2" name="cost2" type="text" data-label="Expense or service 2"></div>
+            <div class="field"><label for="rs-cost2-total">Total cost</label><input id="rs-cost2-total" name="cost2_total" type="text" inputmode="decimal" placeholder="$" data-label="Expense 2 total cost"></div>
+            <div class="field"><label for="rs-cost2-requested">Amount requested</label><input id="rs-cost2-requested" name="cost2_requested" type="text" inputmode="decimal" placeholder="$" data-label="Expense 2 amount requested"></div>
+          </div>
+          <div class="form-row cost-row">
+            <div class="field"><label for="rs-cost3">Expense or service</label><input id="rs-cost3" name="cost3" type="text" data-label="Expense or service 3"></div>
+            <div class="field"><label for="rs-cost3-total">Total cost</label><input id="rs-cost3-total" name="cost3_total" type="text" inputmode="decimal" placeholder="$" data-label="Expense 3 total cost"></div>
+            <div class="field"><label for="rs-cost3-requested">Amount requested</label><input id="rs-cost3-requested" name="cost3_requested" type="text" inputmode="decimal" placeholder="$" data-label="Expense 3 amount requested"></div>
+          </div>
+          <div class="field"><label for="rs-total">Total financial assistance requested</label><input id="rs-total" name="total_requested" type="text" inputmode="decimal" placeholder="$"></div>
+          <div class="field">
+            <label for="rs-resources">What can you contribute, and what other assistance is available or pending?</label>
+            <p class="hint">Include insurance, fundraising, or support from others, if applicable.</p>
+            <textarea id="rs-resources" name="resources"></textarea>
+          </div>
+
+          <h3 class="mt-1">Current care and next steps</h3>
+          <div class="field">
+            <label for="rs-care">Describe relevant health conditions, medications, handling needs, or other care considerations <span class="req">*</span></label>
+            <p class="hint">Include veterinary recommendations if available.</p>
+            <textarea id="rs-care" name="care" required></textarea>
+          </div>
+          <div class="field">
+            <label for="rs-plan">How would this support improve the horse’s situation, and what is the plan for ongoing care after the requested assistance ends? <span class="req">*</span></label>
+            <textarea id="rs-plan" name="plan" required></textarea>
+          </div>
+          <fieldset class="field">
+            <legend>If seeking placement, what arrangement are you requesting?</legend>
+            <div class="checks checks-grid">
+              <label><input type="radio" name="placement" value="Temporary foster care"> Temporary foster care</label>
+              <label><input type="radio" name="placement" value="Help finding a new home"> Help finding a new home</label>
+              <label><input type="radio" name="placement" value="Discuss surrender"> Discuss surrender</label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="rs-placement-details">Placement deadline and relevant transport needs</label>
+            <textarea id="rs-placement-details" name="placement_details"></textarea>
+          </div>
+
+          <h3 class="mt-1">Supporting information</h3>
+          <p class="muted">After we receive your request, we’ll reply by email so you can send photos, estimates, and records. Please don’t send Social Security numbers, bank details, or unrelated private records.</p>
+          <fieldset class="field">
+            <legend>Which of these can you provide?</legend>
+            <div class="checks checks-grid">
+              <label><input type="checkbox" name="documents" value="Recent horse photos"> Recent horse photos</label>
+              <label><input type="checkbox" name="documents" value="Cost estimates or invoices"> Cost estimates or invoices</label>
+              <label><input type="checkbox" name="documents" value="Relevant care records"> Relevant care records</label>
+              <label><input type="checkbox" name="documents" value="Ownership or authority documentation"> Ownership or authority documentation</label>
+              <label><input type="checkbox" name="documents" value="Other"> Other</label>
+            </div>
+          </fieldset>
+          <div class="field"><label for="rs-documents-other">If other, what can you provide?</label><input id="rs-documents-other" name="documents_other" type="text"></div>
+          <div class="field">
+            <label for="rs-unavailable">Unavailable items or additional information</label>
+            <textarea id="rs-unavailable" name="additional"></textarea>
+          </div>
+          <p class="mt-1"><strong>Veterinarian or other provider who can verify this request, if applicable</strong></p>
+          <div class="form-row">
+            <div class="field"><label for="rs-provider">Name or practice</label><input id="rs-provider" name="provider" type="text" data-label="Provider name or practice"></div>
+            <div class="field"><label for="rs-provider-phone">Phone</label><input id="rs-provider-phone" name="provider_phone" type="tel" data-label="Provider phone"></div>
+          </div>
+          <div class="field"><label for="rs-provider-email">Email</label><input id="rs-provider-email" name="provider_email" type="email" data-label="Provider email"></div>
+          <fieldset class="field">
+            <legend>May Icelandic Horse Haven contact this provider about this request?</legend>
+            <div class="checks checks-grid">
+              <label><input type="radio" name="provider_contact" value="Yes"> Yes</label>
+              <label><input type="radio" name="provider_contact" value="Contact me first"> Contact me first</label>
+            </div>
+          </fieldset>
+
+          <h3 class="mt-1">Applicant acknowledgment</h3>
+          <p>I understand that additional information may be needed and that assistance is not guaranteed. Any approved support, payment arrangements, or placement terms will be confirmed separately. This request does not transfer ownership of the horse or authorize treatment. Any public use of my name, story, or horse’s photographs requires separate permission.</p>
+          <div class="checks">
+            <label><input type="checkbox" name="acknowledgment" value="Yes" data-label="Confirms information is accurate and accepts the acknowledgment" required> <span>I confirm that the information provided is accurate to the best of my knowledge, and I accept the terms above. <span class="req">*</span></span></label>
+          </div>
+          <div class="field"><label for="rs-signature">Type your full name as your signature <span class="req">*</span></label><input id="rs-signature" name="signature" type="text" autocomplete="name" required></div>
+
+          <button class="btn" type="submit">Submit request</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container narrow prose center">
+        <h2>Planning ahead?</h2>
+        <p>Icelandic horses can live well into their thirties. Making a plan for your horse’s future now is one of the kindest things you can do.</p>
+        <div class="btn-row" style="justify-content:center"><a class="btn btn-outline" href="learn.html#planning">Planning for your horse’s future</a></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/site.js"></script>
+</body>
+</html>

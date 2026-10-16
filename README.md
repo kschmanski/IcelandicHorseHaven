@@ -16,7 +16,7 @@ Static site for [icelandichorsehaven.org](https://icelandichorsehaven.org), serv
 
 ## Forms
 
-No CRM is connected yet. As a placeholder, every form (contact, adoption, rehoming, sponsorship, volunteer, newsletter signup and the donate widget) posts to [FormSubmit](https://formsubmit.co) at `CONFIG.formEndpoint`, which emails the submission to `CONFIG.email`. The subject is the form's `data-subject` (or its `data-form` name) followed by the sender's name, for example "Contact form: Jane Smith" or "New subscriber: Jane Smith", and replies go straight to the sender. If the request fails, the visitor is offered a "Send by email" button that opens their email app with everything they entered.
+No CRM is connected yet. As a placeholder, every form (contact, adoption, support request, sponsorship, volunteer, newsletter signup and the donate widget) posts to [FormSubmit](https://formsubmit.co) at `CONFIG.formEndpoint`, which emails the submission to `CONFIG.email`. The subject is the form's `data-subject` (or its `data-form` name) followed by the sender's name, for example "Contact form: Jane Smith" or "New subscriber: Jane Smith", and replies go straight to the sender. If the request fails, the visitor is offered a "Send by email" button that opens their email app with everything they entered.
 
 - **Activation:** FormSubmit already has the form activated for `icelandichorsehaven.org`. If the address or domain changes, the first submission triggers an "Activate Form" email to `CONFIG.email`; until it's clicked, submissions fail and visitors see the email fallback.
 - **Address:** `formEndpoint` uses FormSubmit's random alias instead of the email address, so the address isn't in the page source.
