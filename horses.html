@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet Our Horses | Icelandic Horse Haven</title>
+  <meta name="description" content="Meet the Icelandic horses in our care: horses available for adoption and the sanctuary residents you can sponsor.">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <div class="eyebrow">Our horses</div>
+        <h1>Meet Our Horses</h1>
+        <p class="lede">Every horse here has a story. Some are ready for a new family, and some will stay with us for life. All of them benefit from people who care.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="filter-bar" data-horse-filter="horse-grid" role="group" aria-label="Filter horses">
+          <button type="button" data-status="available,pending,resident" aria-pressed="true">All current horses</button>
+          <button type="button" data-status="available,pending" aria-pressed="false">Available for adoption</button>
+          <button type="button" data-status="resident" aria-pressed="false">Sanctuary residents</button>
+          <button type="button" data-status="adopted" aria-pressed="false">Happy tails</button>
+        </div>
+        <div class="grid grid-3" id="horse-grid" data-horses="available,pending,resident" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section section-band">
+      <div class="container split-even split">
+        <div class="card">
+          <h3>Thinking about adopting?</h3>
+          <p>Learn how we match horses with homes, what we look for, and how to apply.</p>
+          <div class="btn-row"><a class="btn" href="adopt.html">Adoption process</a></div>
+        </div>
+        <div class="card">
+          <h3>Can’t adopt? Sponsor.</h3>
+          <p>A monthly sponsorship covers a horse’s hay, hoof care, and vet visits, and you’ll get updates on how they’re doing.</p>
+          <div class="btn-row"><a class="btn btn-outline" href="sponsor.html">Sponsor a horse</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/data.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>

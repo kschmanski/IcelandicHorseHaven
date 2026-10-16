@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adoption Process | Icelandic Horse Haven</title>
+  <meta name="description" content="How adoption works at Icelandic Horse Haven, and how to apply to adopt an Icelandic horse.">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <div class="eyebrow">Our horses</div>
+        <h1>Adoption Process</h1>
+        <p class="lede">Our goal is a lasting match. We take the time to get to know each horse and each adopter, so the horse lands somewhere they can thrive.</p>
+        <div class="btn-row">
+          <a class="btn" href="#apply">Apply to adopt</a>
+          <a class="btn btn-outline" href="horses.html">See available horses</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head"><h2>How It Works</h2></div>
+        <ol class="steps">
+          <li><h3>Browse</h3><p>Read our horses’ profiles and note who might fit your experience, goals, and herd.</p></li>
+          <li><h3>Apply</h3><p>Fill out the application below. It helps us understand your experience and your setup.</p></li>
+          <li><h3>Talk &amp; visit</h3><p>We’ll set up a conversation and, when possible, a visit to meet the horse in person.</p></li>
+          <li><h3>Home check</h3><p>We confirm the horse will have safe fencing, shelter, and at least one equine companion.</p></li>
+          <li><h3>Welcome home</h3><p>Sign the adoption agreement, plan transport, and stay in touch. We’re here for questions for life.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section-band">
+      <div class="container narrow faq">
+        <div class="section-head"><h2>Common Questions</h2></div>
+        <details>
+          <summary>Is there an adoption fee?</summary>
+          <p>Yes. Adoption fees vary by horse and help cover the care they received while with us. Each horse’s fee is shared when you apply.</p>
+        </details>
+        <details>
+          <summary>Do I need experience with Icelandic horses?</summary>
+          <p>Not always. Some of our horses are great for people new to the breed. Others need an experienced Icelandic rider. We’ll help you find a good fit.</p>
+        </details>
+        <details>
+          <summary>Can I adopt if I live far away?</summary>
+          <p>We work with adopters across the United States. Distance can affect visits and transport, so tell us where you are and we’ll talk through it.</p>
+        </details>
+        <details>
+          <summary>What if it doesn’t work out?</summary>
+          <p>Horses we place can always come back to us. Our adoption agreement asks that you contact us first if you can no longer keep the horse.</p>
+        </details>
+        <details>
+          <summary>Why do you require a companion?</summary>
+          <p>Icelandic horses are herd animals and can be stressed when kept alone. Every horse we place goes to a home with at least one other equine.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" id="apply">
+      <div class="container narrow">
+        <div class="section-head">
+          <h2>Adoption Application</h2>
+          <p class="lede">Fields marked <span class="req">*</span> are required.</p>
+        </div>
+        <form class="card form" data-form="Adoption application">
+          <div class="form-row">
+            <div class="field"><label for="ad-name">Full name <span class="req">*</span></label><input id="ad-name" name="name" type="text" autocomplete="name" required></div>
+            <div class="field"><label for="ad-email">Email <span class="req">*</span></label><input id="ad-email" name="email" type="email" autocomplete="email" required></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="ad-phone">Phone</label><input id="ad-phone" name="phone" type="tel" autocomplete="tel"></div>
+            <div class="field"><label for="ad-location">City and state <span class="req">*</span></label><input id="ad-location" name="location" type="text" required></div>
+          </div>
+          <div class="field">
+            <label for="ad-horse">Horse you’re interested in</label>
+            <input id="ad-horse" name="horse" type="text" data-prefill-horse>
+            <span class="hint">Leave blank if you’d like us to suggest a match.</span>
+          </div>
+          <div class="field">
+            <label for="ad-experience">Experience with Icelandic horses <span class="req">*</span></label>
+            <select id="ad-experience" name="experience" required>
+              <option value="">Choose one</option>
+              <option>New to Icelandic horses</option>
+              <option>Some experience</option>
+              <option>Experienced rider/owner</option>
+              <option>Professional (trainer, breeder, instructor)</option>
+            </select>
+          </div>
+          <fieldset class="field">
+            <legend>What are you looking for?</legend>
+            <div class="checks">
+              <label><input type="checkbox" name="goals" value="Trail riding"> Trail riding</label>
+              <label><input type="checkbox" name="goals" value="Gaited training or shows"> Gaited training or shows</label>
+              <label><input type="checkbox" name="goals" value="Companion horse"> Companion horse</label>
+              <label><input type="checkbox" name="goals" value="Lesson or family horse"> Lesson or family horse</label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="ad-facility">Tell us about where the horse would live <span class="req">*</span></label>
+            <textarea id="ad-facility" name="facility" required placeholder="Boarding or at home, turnout, shelter, fencing, and the other horses they’d live with."></textarea>
+          </div>
+          <div class="field">
+            <label for="ad-references">References</label>
+            <textarea id="ad-references" name="references" placeholder="Your veterinarian, farrier, or trainer, with contact info."></textarea>
+          </div>
+          <div class="checks">
+            <label><input type="checkbox" name="agree" value="Yes" data-label="Agrees to home check and return policy" required> I understand a home check is part of the process, and that I’ll contact Icelandic Horse Haven first if I can no longer keep the horse. <span class="req">*</span></label>
+          </div>
+          <button class="btn" type="submit">Submit application</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/data.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>
