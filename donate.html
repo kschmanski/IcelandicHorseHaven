@@ -26,7 +26,11 @@
 
     <section class="section">
       <div class="container split">
-        <div class="card" data-donate>
+        <form class="card" data-donate>
+          <div class="visually-hidden" aria-hidden="true">
+            <label for="dn-honey">Leave this field empty</label>
+            <input id="dn-honey" name="_honey" type="text" tabindex="-1" autocomplete="off">
+          </div>
           <h2 style="font-size:1.6rem">Make a gift</h2>
           <div class="mt-1">
             <div class="segmented" role="group" aria-label="Gift frequency">
@@ -46,8 +50,12 @@
             <input id="custom-amount" type="number" min="1" step="1" inputmode="numeric" placeholder="$">
           </div>
           <p class="mt-1">Your gift: <strong data-summary></strong></p>
-          <div class="btn-row" style="margin-top:1rem"><button class="btn" type="button" data-give>Continue</button></div>
-        </div>
+          <div class="form-row mt-1">
+            <div class="field"><label for="dn-name">Your name <span class="req">*</span></label><input id="dn-name" name="name" type="text" autocomplete="name" required></div>
+            <div class="field"><label for="dn-email">Email <span class="req">*</span></label><input id="dn-email" name="email" type="email" autocomplete="email" required></div>
+          </div>
+          <div class="btn-row" style="margin-top:1rem"><button class="btn" type="submit">Continue</button></div>
+        </form>
 
         <aside class="prose">
           <h3 style="margin-top:0">What your gift can do</h3>

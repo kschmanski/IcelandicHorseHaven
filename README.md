@@ -16,14 +16,13 @@ Static site for [icelandichorsehaven.org](https://icelandichorsehaven.org), serv
 
 ## Forms
 
-No CRM is connected yet. When someone submits a form, the site validates it, then offers a "Send by email" button that opens their email app with everything they entered, addressed to `CONFIG.email`. To connect a CRM later, replace the submit handler in `setupForms` (and the donate button in `setupDonate`) in `js/site.js`.
+No CRM is connected yet. As a placeholder, every form (contact, adoption, rehoming, sponsorship, volunteer, newsletter signup and the donate widget) posts to [FormSubmit](https://formsubmit.co) at `CONFIG.formEndpoint`, which emails the submission to `CONFIG.email`. The subject is the form's `data-subject` (or its `data-form` name) followed by the sender's name, for example "Contact form: Jane Smith" or "New subscriber: Jane Smith", and replies go straight to the sender. If the request fails, the visitor is offered a "Send by email" button that opens their email app with everything they entered.
 
-The **Subscribe for Updates** form on the home page is the exception. As a placeholder until a newsletter service is chosen, `setupSubscribe` posts each signup to [FormSubmit](https://formsubmit.co) at `CONFIG.subscribeEndpoint`, which emails it to `CONFIG.email` with the subject "New subscriber: <name>". If the request fails, the visitor gets the "Send by email" fallback instead.
-
-- **Activation:** the first signup triggers an "Activate Form" email from FormSubmit to `CONFIG.email`. Click it once; signups before that are held and delivered after activation.
-- **Hiding the address:** after activating, FormSubmit offers a random alias. Put it in place of the email in `subscribeEndpoint` (`https://formsubmit.co/ajax/<alias>`).
-- **Spam:** a hidden `_honey` field catches most bots; FormSubmit drops any submission that fills it.
-- **Moving to a newsletter service:** point `subscribeEndpoint` at the service and adjust the request body in `setupSubscribe`.
+- **Activation:** FormSubmit already has the form activated for `icelandichorsehaven.org`. If the address or domain changes, the first submission triggers an "Activate Form" email to `CONFIG.email`; until it's clicked, submissions fail and visitors see the email fallback.
+- **Address:** `formEndpoint` uses FormSubmit's random alias instead of the email address, so the address isn't in the page source.
+- **Spam:** each form has a hidden `_honey` field. If it's filled in, the page shows a thank-you without sending anything. Fields whose names start with `_` are never included in the email.
+- **Per-form text:** `data-subject`, `data-thanks` and `data-success` on a `<form>` override the email subject and the thank-you message (see the newsletter form in `index.html`).
+- **Moving to a CRM or newsletter service:** point `formEndpoint` at it and adjust the request body in `sendForm` in `js/site.js`.
 
 ## Preview locally
 
