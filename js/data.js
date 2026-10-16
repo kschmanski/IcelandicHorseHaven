@@ -109,9 +109,9 @@ function horseCard(horse) {
   const meta = [horse.sex, horse.age && `${horse.age} yrs`, horse.color, horse.height, horse.gaits]
     .filter(Boolean).map(escapeHtml).join(" · ");
   const action = {
-    available: `<a class="btn" href="adopt.html?horse=${encodeURIComponent(horse.name)}#apply">Apply to adopt</a>`,
-    pending: `<a class="btn btn-outline" href="horses.html">See other horses</a>`,
-    resident: `<a class="btn" href="sponsor.html?horse=${encodeURIComponent(horse.name)}#sponsor-form">Sponsor ${name}</a>`,
+    available: `<a class="btn" href="adopt?horse=${encodeURIComponent(horse.name)}#apply">Apply to adopt</a>`,
+    pending: `<a class="btn btn-outline" href="horses">See other horses</a>`,
+    resident: `<a class="btn" href="sponsor?horse=${encodeURIComponent(horse.name)}#sponsor-form">Sponsor ${name}</a>`,
     adopted: ""
   }[horse.status];
 

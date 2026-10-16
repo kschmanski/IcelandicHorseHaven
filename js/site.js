@@ -21,46 +21,46 @@ const CONFIG = {
     instagram: "",
     youtube: ""
   },
-  announcement: 'We’re just getting started. <a href="index.html#subscribe">Sign up for updates</a> to follow along.'
+  announcement: 'We’re just getting started. <a href="./#subscribe">Sign up for updates</a> to follow along.'
 };
 
 const NAV = [
   {
     label: "About",
     children: [
-      { label: "Our Mission", href: "about.html" },
-      { label: "Our Approach", href: "about.html#approach" },
-      { label: "Leadership", href: "about.html#leadership" },
-      { label: "Contact Us", href: "contact.html" }
+      { label: "Our Mission", href: "about" },
+      { label: "Our Approach", href: "about#approach" },
+      { label: "Leadership", href: "about#leadership" },
+      { label: "Contact Us", href: "contact" }
     ]
   },
   {
     label: "Our Horses",
     children: [
-      { label: "Meet Our Horses", href: "horses.html" },
-      { label: "Adoption Process", href: "adopt.html" },
-      { label: "Sponsor a Horse", href: "sponsor.html" }
+      { label: "Meet Our Horses", href: "horses" },
+      { label: "Adoption Process", href: "adopt" },
+      { label: "Sponsor a Horse", href: "sponsor" }
     ]
   },
-  { label: "Request Support", href: "request-support.html" },
+  { label: "Request Support", href: "request-support" },
   {
     label: "How to Help",
     children: [
-      { label: "Donate", href: "donate.html" },
-      { label: "Sponsor a Horse", href: "sponsor.html" },
-      { label: "Volunteer", href: "volunteer.html" },
-      { label: "Events", href: "events.html" }
+      { label: "Donate", href: "donate" },
+      { label: "Sponsor a Horse", href: "sponsor" },
+      { label: "Volunteer", href: "volunteer" },
+      { label: "Events", href: "events" }
     ]
   },
   {
     label: "Learn",
     children: [
-      { label: "The Icelandic Horse", href: "learn.html" },
-      { label: "Planning for Your Horse", href: "learn.html#planning" }
+      { label: "The Icelandic Horse", href: "learn" },
+      { label: "Planning for Your Horse", href: "learn#planning" }
     ]
   },
-  { label: "Volunteer", href: "volunteer.html" },
-  { label: "Events", href: "events.html" }
+  { label: "Volunteer", href: "volunteer" },
+  { label: "Events", href: "events" }
 ];
 
 const ICONS = {
@@ -72,9 +72,11 @@ const ICONS = {
 
 const HILLS = '<svg class="hills" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true"><path class="back" d="M0,140 C180,80 320,60 520,110 C700,155 860,70 1040,60 C1200,52 1330,100 1440,120 L1440,220 L0,220 Z"/><path class="front" d="M0,180 C220,130 420,150 640,170 C860,190 1080,120 1280,140 C1360,148 1410,160 1440,165 L1440,220 L0,220 Z"/></svg>';
 
+// Links use short URLs ("contact", not "contact.html"), but older .html
+// addresses still load, so compare without the extension either way.
 function currentPage() {
-  const file = location.pathname.split("/").pop();
-  return file === "" ? "index.html" : file;
+  const file = location.pathname.split("/").pop().replace(/\.html$/, "");
+  return file === "" || file === "index" ? "./" : file;
 }
 
 function isCurrent(href) {
@@ -104,13 +106,13 @@ function renderHeader() {
     ${CONFIG.announcement ? `<div class="announce">${CONFIG.announcement}</div>` : ""}
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="index.html">
+        <a class="brand" href="./">
           <img src="images/logo-emblem.png" alt="" width="52" height="52">
           <span class="brand-name">${CONFIG.name}<small>${CONFIG.tagline}</small></span>
         </a>
         <div class="header-actions">
-          <a class="btn btn-outline" href="request-support.html">Request Help for a Horse</a>
-          <a class="btn" href="donate.html">Donate</a>
+          <a class="btn btn-outline" href="request-support">Request Help for a Horse</a>
+          <a class="btn" href="donate">Donate</a>
           <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Menu">${ICONS.menu}</button>
         </div>
       </div>
@@ -151,32 +153,32 @@ function renderFooter() {
             <div>
               <h4>Our Horses</h4>
               <ul>
-                <li><a href="horses.html">Meet Our Horses</a></li>
-                <li><a href="adopt.html">Adoption Process</a></li>
-                <li><a href="request-support.html">Request Support</a></li>
+                <li><a href="horses">Meet Our Horses</a></li>
+                <li><a href="adopt">Adoption Process</a></li>
+                <li><a href="request-support">Request Support</a></li>
               </ul>
             </div>
             <div>
               <h4>Get Involved</h4>
               <ul>
-                <li><a href="donate.html">Donate</a></li>
-                <li><a href="sponsor.html">Sponsor a Horse</a></li>
-                <li><a href="volunteer.html">Volunteer</a></li>
-                <li><a href="events.html">Events</a></li>
+                <li><a href="donate">Donate</a></li>
+                <li><a href="sponsor">Sponsor a Horse</a></li>
+                <li><a href="volunteer">Volunteer</a></li>
+                <li><a href="events">Events</a></li>
               </ul>
             </div>
             <div>
               <h4>About</h4>
               <ul>
-                <li><a href="about.html">Our Mission</a></li>
-                <li><a href="learn.html">The Icelandic Horse</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="about">Our Mission</a></li>
+                <li><a href="learn">The Icelandic Horse</a></li>
+                <li><a href="contact">Contact Us</a></li>
               </ul>
             </div>
           </div>
           <div class="footer-legal">
             <span>&copy; ${year} ${CONFIG.name}</span>
-            <span><a href="index.html#subscribe">Subscribe to updates</a></span>
+            <span><a href="./#subscribe">Subscribe to updates</a></span>
           </div>
         </div>
       </div>

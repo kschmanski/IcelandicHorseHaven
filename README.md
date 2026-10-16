@@ -14,6 +14,8 @@ Static site for [icelandichorsehaven.org](https://icelandichorsehaven.org), serv
 | Colors and fonts | Tokens at the top of `css/styles.css` |
 | Logo files | `images/` |
 
+Links between pages leave off `.html` (`contact`, not `contact.html`; `./` for the home page). GitHub Pages serves `contact.html` at `/contact`, and the old `.html` addresses still work.
+
 ## Forms
 
 No CRM is connected yet. As a placeholder, every form (contact, adoption, support request, sponsorship, volunteer, newsletter signup and the donate widget) posts to [FormSubmit](https://formsubmit.co) at `CONFIG.formEndpoint`, which emails the submission to `CONFIG.email`. The subject is the form's `data-subject` (or its `data-form` name) followed by the sender's name, for example "Contact form: Jane Smith" or "New subscriber: Jane Smith", and replies go straight to the sender. If the request fails, the visitor is offered a "Send by email" button that opens their email app with everything they entered.
@@ -26,8 +28,10 @@ No CRM is connected yet. As a placeholder, every form (contact, adoption, suppor
 
 ## Preview locally
 
-Any static server works, for example:
+Use a static server that serves `/contact` from `contact.html` the way GitHub Pages does, for example:
 
 ```bash
 npx serve .
 ```
+
+`python3 -m http.server` doesn't do this, so links between pages will 404 there.
