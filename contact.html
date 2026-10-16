@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Icelandic Horse Haven</title>
+  <meta name="description" content="Get in touch with Icelandic Horse Haven.">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <div class="eyebrow">About us</div>
+        <h1>Contact Us</h1>
+        <p class="lede">Questions, ideas, or a horse you’re worried about? We’d love to hear from you.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split">
+        <form class="card form" data-form="Contact form">
+          <div class="form-row">
+            <div class="field"><label for="ct-name">Name <span class="req">*</span></label><input id="ct-name" name="name" type="text" autocomplete="name" required></div>
+            <div class="field"><label for="ct-email">Email <span class="req">*</span></label><input id="ct-email" name="email" type="email" autocomplete="email" required></div>
+          </div>
+          <div class="field">
+            <label for="ct-topic">Topic</label>
+            <select id="ct-topic" name="topic">
+              <option>General question</option>
+              <option>Adoption</option>
+              <option>Rehoming a horse</option>
+              <option>Donations &amp; sponsorship</option>
+              <option>Volunteering &amp; fostering</option>
+              <option>Media or partnership</option>
+            </select>
+          </div>
+          <div class="field"><label for="ct-message">Message <span class="req">*</span></label><textarea id="ct-message" name="message" required></textarea></div>
+          <button class="btn" type="submit">Send message</button>
+        </form>
+
+        <aside class="grid" style="grid-template-columns:1fr">
+          <div class="card">
+            <h3>Email</h3>
+            <p><a data-email href="#"></a></p>
+          </div>
+          <div class="card">
+            <h3>Need help with a horse?</h3>
+            <p>Use our rehoming request so we have the details we need to help.</p>
+            <div class="btn-row" style="margin-top:1rem"><a class="btn" href="rehoming.html">Rehoming request</a></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/site.js"></script>
+</body>
+</html>

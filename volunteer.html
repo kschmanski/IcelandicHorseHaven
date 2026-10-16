@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volunteer | Icelandic Horse Haven</title>
+  <meta name="description" content="Volunteer, foster, or lend your skills to Icelandic Horse Haven.">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <div class="eyebrow">How to help</div>
+        <h1>Volunteer &amp; Foster</h1>
+        <p class="lede">The safety net is made of people. Wherever you live in the U.S., there’s a way to lend a hand.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head"><h2>Ways to Volunteer</h2></div>
+        <div class="grid grid-3">
+          <div class="card"><h3>Foster homes</h3><p>Open your barn to a horse in transition. Fosters give horses a calm place to settle while we find the right adopter.</p></div>
+          <div class="card"><h3>Horse care</h3><p>Help with feeding, grooming, turnout, and barn chores. No experience required for many tasks; we’ll train you.</p></div>
+          <div class="card"><h3>Transport</h3><p>Have a truck and trailer? Help us move horses safely to foster homes, vets, and adopters.</p></div>
+          <div class="card"><h3>Trainers &amp; riders</h3><p>Experienced Icelandic horse riders and trainers help evaluate gaits and prepare horses for new homes.</p></div>
+          <div class="card"><h3>Professional skills</h3><p>Veterinarians, farriers, bodyworkers, photographers, and accountants all make a big difference.</p></div>
+          <div class="card"><h3>Events &amp; outreach</h3><p>Help at events, represent us at shows and clinics, or spread the word in your local Icelandic horse club.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-band">
+      <div class="container narrow">
+        <div class="section-head">
+          <h2>Volunteer Interest Form</h2>
+          <p class="lede">Tell us a little about yourself and we’ll reach out about opportunities near you.</p>
+        </div>
+        <form class="card form" data-form="Volunteer interest">
+          <div class="form-row">
+            <div class="field"><label for="vo-name">Full name <span class="req">*</span></label><input id="vo-name" name="name" type="text" autocomplete="name" required></div>
+            <div class="field"><label for="vo-email">Email <span class="req">*</span></label><input id="vo-email" name="email" type="email" autocomplete="email" required></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="vo-phone">Phone</label><input id="vo-phone" name="phone" type="tel" autocomplete="tel"></div>
+            <div class="field"><label for="vo-location">City and state <span class="req">*</span></label><input id="vo-location" name="location" type="text" required></div>
+          </div>
+          <fieldset class="field">
+            <legend>I’m interested in</legend>
+            <div class="checks">
+              <label><input type="checkbox" name="interests" value="Fostering"> Fostering a horse</label>
+              <label><input type="checkbox" name="interests" value="Horse care"> Horse care</label>
+              <label><input type="checkbox" name="interests" value="Transport"> Transport</label>
+              <label><input type="checkbox" name="interests" value="Training and riding"> Training and riding</label>
+              <label><input type="checkbox" name="interests" value="Professional skills"> Professional skills</label>
+              <label><input type="checkbox" name="interests" value="Events and outreach"> Events and outreach</label>
+            </div>
+          </fieldset>
+          <div class="field"><label for="vo-about">Tell us about your horse experience and availability</label><textarea id="vo-about" name="about"></textarea></div>
+          <button class="btn" type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/site.js"></script>
+</body>
+</html>

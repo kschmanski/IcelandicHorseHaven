@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate | Icelandic Horse Haven</title>
+  <meta name="description" content="Donate to Icelandic Horse Haven and help provide a safety net for Icelandic horses across the United States.">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <div class="eyebrow">How to help</div>
+        <h1>Your Gift Could Change a Horse’s Life</h1>
+        <p class="lede">Donations provide hay, hoof care, veterinary treatment, and safe transport for Icelandic horses who need somewhere to land.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split">
+        <div class="card" data-donate>
+          <h2 style="font-size:1.6rem">Make a gift</h2>
+          <div class="mt-1">
+            <div class="segmented" role="group" aria-label="Gift frequency">
+              <button type="button" data-frequency="one-time" aria-pressed="true">One-time</button>
+              <button type="button" data-frequency="monthly" aria-pressed="false">Monthly</button>
+            </div>
+          </div>
+          <div class="amounts mt-1" role="group" aria-label="Gift amount">
+            <button type="button" class="choice" data-amount="25" aria-pressed="false">$25</button>
+            <button type="button" class="choice" data-amount="50" aria-pressed="false">$50</button>
+            <button type="button" class="choice" data-amount="100" aria-pressed="true">$100</button>
+            <button type="button" class="choice" data-amount="250" aria-pressed="false">$250</button>
+            <button type="button" class="choice" data-amount="500" aria-pressed="false">$500</button>
+          </div>
+          <div class="field mt-1">
+            <label for="custom-amount">Or enter an amount</label>
+            <input id="custom-amount" type="number" min="1" step="1" inputmode="numeric" placeholder="$">
+          </div>
+          <p class="mt-1">Your gift: <strong data-summary></strong></p>
+          <div class="btn-row" style="margin-top:1rem"><button class="btn" type="button" data-give>Continue</button></div>
+        </div>
+
+        <aside class="prose">
+          <h3 style="margin-top:0">What your gift can do</h3>
+          <ul>
+            <li><strong>$25</strong> helps keep a horse in good hay</li>
+            <li><strong>$50</strong> helps pay for a hoof trim</li>
+            <li><strong>$100</strong> helps fund a fly sheet for a horse with sweet itch</li>
+            <li><strong>$250</strong> helps cover a veterinary exam or dental float</li>
+            <li><strong>$500</strong> helps bring a horse in need to safety</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-band">
+      <div class="container">
+        <div class="section-head"><h2>Other Ways to Give</h2></div>
+        <div class="grid grid-4">
+          <div class="card"><h3>Monthly giving</h3><p>Recurring gifts give us a steady foundation to plan care. Choose “Monthly” above.</p></div>
+          <div class="card"><h3>Sponsor a horse</h3><p>Support one horse’s care and follow their story. <a href="sponsor.html">Learn about sponsorship</a>.</p></div>
+          <div class="card"><h3>Supplies &amp; in-kind gifts</h3><p>Fly sheets and masks, hay, hoof boots, and tack in Icelandic sizes are always welcome. <a href="contact.html">Contact us</a> before dropping anything off.</p></div>
+          <div class="card"><h3>Tribute gifts</h3><p>Honor or remember a person or a beloved horse with a gift in their name. Just tell us who it’s for.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/site.js"></script>
+</body>
+</html>

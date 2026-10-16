@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sponsor a Horse | Icelandic Horse Haven</title>
+  <meta name="description" content="Sponsor an Icelandic horse at Icelandic Horse Haven and help cover their ongoing care.">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <div class="eyebrow">How to help</div>
+        <h1>Sponsor a Horse</h1>
+        <p class="lede">Not able to adopt? A sponsorship lets you support a specific horse’s care month after month, and follow their story along the way.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head"><h2>Sponsorship Levels</h2></div>
+        <div class="grid grid-4">
+          <div class="card"><div class="eyebrow">$25 / month</div><h3>Friend</h3><p>Helps keep a horse in good hay and fresh water.</p></div>
+          <div class="card"><div class="eyebrow">$50 / month</div><h3>Guardian</h3><p>Helps cover regular trims and hoof care.</p></div>
+          <div class="card"><div class="eyebrow">$100 / month</div><h3>Herd Hero</h3><p>Helps cover vaccines, dental work, and fly protection for sweet itch season.</p></div>
+          <div class="card"><div class="eyebrow">$250 / month</div><h3>Haven Champion</h3><p>Helps cover a horse’s full monthly care.</p></div>
+        </div>
+        <p class="center muted mt-2">Every sponsor receives updates and photos of their horse.</p>
+      </div>
+    </section>
+
+    <section class="section section-band">
+      <div class="container">
+        <div class="section-head">
+          <h2>Horses You Can Sponsor</h2>
+          <p class="lede">Our sanctuary residents are horses who will stay with us for life because of age, health, or special care needs.</p>
+        </div>
+        <div class="grid grid-3" data-horses="resident" data-empty="Our first sanctuary residents will be introduced here soon. In the meantime, you can sponsor the herd as a whole."></div>
+      </div>
+    </section>
+
+    <section class="section" id="sponsor-form">
+      <div class="container narrow">
+        <div class="section-head">
+          <h2>Become a Sponsor</h2>
+          <p class="lede">Tell us who you’d like to sponsor and we’ll be in touch to set it up.</p>
+        </div>
+        <form class="card form" data-form="Sponsorship">
+          <div class="form-row">
+            <div class="field"><label for="sp-name">Full name <span class="req">*</span></label><input id="sp-name" name="name" type="text" autocomplete="name" required></div>
+            <div class="field"><label for="sp-email">Email <span class="req">*</span></label><input id="sp-email" name="email" type="email" autocomplete="email" required></div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="sp-horse">Horse to sponsor</label>
+              <input id="sp-horse" name="horse" type="text" data-prefill-horse placeholder="Leave blank to support the whole herd">
+            </div>
+            <div class="field">
+              <label for="sp-level">Sponsorship level <span class="req">*</span></label>
+              <select id="sp-level" name="level" required>
+                <option value="">Choose one</option>
+                <option>Friend: $25/month</option>
+                <option>Guardian: $50/month</option>
+                <option>Herd Hero: $100/month</option>
+                <option>Haven Champion: $250/month</option>
+                <option>Other amount</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="sp-gift">Is this a gift?</label>
+            <input id="sp-gift" name="gift" type="text" placeholder="Recipient’s name, if you’re giving a sponsorship as a gift">
+          </div>
+          <div class="field"><label for="sp-message">Anything else?</label><textarea id="sp-message" name="message"></textarea></div>
+          <button class="btn" type="submit">Become a sponsor</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/data.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>
