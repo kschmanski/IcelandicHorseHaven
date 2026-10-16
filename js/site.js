@@ -9,11 +9,10 @@ const CONFIG = {
   tagline: "Horse Sanctuary",
   // TODO: confirm the public contact address before launch.
   email: "info@icelandichorsehaven.org",
-  // Where the "Subscribe for Updates" form sends signups. FormSubmit emails each
-  // one to the address in the URL. After activating, you can swap the address
-  // for the random alias FormSubmit gives you so it isn't in the page source.
-  // Replace with a newsletter service's endpoint once one is chosen.
-  subscribeEndpoint: "https://formsubmit.co/ajax/info@icelandichorsehaven.org",
+  // Where every form sends submissions. FormSubmit emails each one to CONFIG.email;
+  // the random alias stands in for the address so it isn't in the page source.
+  // Replace with a CRM or newsletter service's endpoint once one is chosen.
+  formEndpoint: "https://formsubmit.co/ajax/76ba71c27e8972196b11ecc1a732a516",
   phone: "",
   location: "United States",
   // Leave a URL empty to hide that icon.
@@ -224,17 +223,19 @@ function setupNav() {
 }
 
 /* ---------- Forms ----------
- * No CRM is connected yet, so forms don't submit anywhere. Instead, a valid
- * submission shows a message with a button that opens the visitor's email app
- * with everything they entered. Swap handleSubmit for a real endpoint later.
+ * No CRM is connected yet. As a placeholder, every form posts to
+ * CONFIG.formEndpoint (FormSubmit), which emails the submission to CONFIG.email.
+ * If the request fails, the visitor is offered a "Send by email" button that
+ * opens their email app with everything they entered, so nothing is lost.
  */
 
 function mailtoLink(subject, body) {
   return `mailto:${CONFIG.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
-function formToText(form) {
-  const lines = [];
+// Fields whose names start with "_" (like the _honey spam trap) are left out.
+function formFields(form) {
+  const fields = {};
   const seen = new Set();
   form.querySelectorAll("input, select, textarea").forEach(el => {
     if (!el.name || el.name.startsWith("_") || seen.has(el.name) || el.type === "submit") return;
@@ -243,9 +244,13 @@ function formToText(form) {
       .map(f => f.value.trim())
       .filter(Boolean);
     seen.add(el.name);
-    if (values.length) lines.push(`${el.dataset.label || el.name}: ${values.join(", ")}`);
+    if (values.length) fields[el.dataset.label || el.name] = values.join(", ");
   });
-  return lines.join("\n");
+  return fields;
+}
+
+function formToText(form) {
+  return Object.entries(formFields(form)).map(([label, value]) => `${label}: ${value}`).join("\n");
 }
 
 function showStatus(form, html) {
@@ -270,88 +275,75 @@ function labelFields(form) {
   });
 }
 
+function senderName(form) {
+  const value = name => form.elements[name]?.value.trim() || "";
+  return value("name") || [value("first"), value("last")].filter(Boolean).join(" ") || value("email");
+}
+
+// Sends a submission to CONFIG.formEndpoint, then shows `success` or, if the
+// request fails, a "Send by email" fallback built from `fallbackSubject` and
+// `fallbackBody`.
+async function sendForm(form, { subject, fields, success, fallbackSubject, fallbackBody }) {
+  const button = form.querySelector('button[type="submit"]');
+  const buttonText = button.textContent;
+
+  // Bots tend to fill every field, including the hidden one.
+  if (form.elements._honey?.value) {
+    showStatus(form, "<p><strong>Thank you!</strong> We’ve received your message.</p>");
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = "Sending…";
+
+  try {
+    if (!CONFIG.formEndpoint) throw new Error("No form endpoint configured");
+    const response = await fetch(CONFIG.formEndpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        _subject: subject,
+        _replyto: form.elements.email?.value.trim() || "",
+        _template: "table",
+        _captcha: "false",
+        ...fields
+      })
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || String(result.success) === "false") {
+      throw new Error(result.message || `Request failed (${response.status})`);
+    }
+
+    form.reset();
+    showStatus(form, success);
+  } catch (error) {
+    console.warn(`${form.dataset.form || "Form"} failed:`, error);
+    showStatus(form, `
+      <p><strong>Sorry, that didn’t go through.</strong> You can send it by email instead,
+      or write to us at <a href="mailto:${CONFIG.email}">${CONFIG.email}</a>.</p>
+      <a class="btn" href="${mailtoLink(fallbackSubject, fallbackBody)}">Send by email</a>`);
+  } finally {
+    button.disabled = false;
+    button.textContent = buttonText;
+  }
+}
+
 function setupForms() {
-  document.querySelectorAll("form[data-form]:not([data-subscribe])").forEach(form => {
+  document.querySelectorAll("form[data-form]").forEach(form => {
     labelFields(form);
 
     form.addEventListener("submit", event => {
       event.preventDefault();
       if (!form.reportValidity()) return;
-      const subject = `${form.dataset.form} — ${CONFIG.name}`;
-      const href = mailtoLink(subject, formToText(form));
-      showStatus(form, `
-        <p><strong>Thank you!</strong> Our online forms aren’t connected yet, so nothing has been sent.
-        Use the button below to send this through your email app, or write to us at
-        <a href="mailto:${CONFIG.email}">${CONFIG.email}</a>.</p>
-        <a class="btn" href="${href}">Send by email</a>`);
-    });
-  });
-}
-
-/* ---------- Subscribe form ----------
- * Placeholder until a newsletter service is chosen: each signup is emailed to
- * CONFIG.email through CONFIG.subscribeEndpoint, so the owner can collect them.
- * If the request fails, the visitor is offered the same "Send by email" fallback
- * as the other forms, so a signup is never silently lost.
- */
-
-function setupSubscribe() {
-  document.querySelectorAll("form[data-subscribe]").forEach(form => {
-    labelFields(form);
-    const button = form.querySelector('button[type="submit"]');
-    const buttonText = button.textContent;
-
-    form.addEventListener("submit", async event => {
-      event.preventDefault();
-      if (!form.reportValidity()) return;
-
-      // Bots tend to fill every field, including the hidden one.
-      if (form.elements._honey?.value) {
-        showStatus(form, "<p><strong>Thank you!</strong> You’re on the list.</p>");
-        return;
-      }
-
-      const first = form.elements.first?.value.trim() || "";
-      const last = form.elements.last?.value.trim() || "";
-      const email = form.elements.email.value.trim();
-      const fullName = [first, last].filter(Boolean).join(" ") || email;
-
-      button.disabled = true;
-      button.textContent = "Subscribing…";
-
-      try {
-        if (!CONFIG.subscribeEndpoint) throw new Error("No subscribe endpoint configured");
-        const response = await fetch(CONFIG.subscribeEndpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({
-            _subject: `New subscriber: ${fullName}`,
-            _template: "table",
-            _captcha: "false",
-            message: `${fullName} (${email}) wants to subscribe to ${CONFIG.name} updates.`,
-            "First name": first,
-            "Last name": last,
-            email
-          })
-        });
-        const result = await response.json().catch(() => ({}));
-        if (!response.ok || String(result.success) === "false") {
-          throw new Error(result.message || `Request failed (${response.status})`);
-        }
-
-        form.reset();
-        showStatus(form, `<p><strong>Thank you for subscribing!</strong> We’ll be in touch with updates from the haven.</p>`);
-      } catch (error) {
-        console.warn("Subscribe failed:", error);
-        const href = mailtoLink(`${form.dataset.form} — ${CONFIG.name}`, formToText(form));
-        showStatus(form, `
-          <p><strong>Sorry, that didn’t go through.</strong> You can send your signup by email instead,
-          or write to us at <a href="mailto:${CONFIG.email}">${CONFIG.email}</a>.</p>
-          <a class="btn" href="${href}">Send by email</a>`);
-      } finally {
-        button.disabled = false;
-        button.textContent = buttonText;
-      }
+      const thanks = form.dataset.thanks || "Thank you!";
+      const message = form.dataset.success || "We’ve received your message and will be in touch soon.";
+      sendForm(form, {
+        subject: `${form.dataset.subject || form.dataset.form}: ${senderName(form)}`,
+        fields: formFields(form),
+        success: `<p><strong>${thanks}</strong> ${message}</p>`,
+        fallbackSubject: `${form.dataset.form} — ${CONFIG.name}`,
+        fallbackBody: formToText(form)
+      });
     });
   });
 }
@@ -361,6 +353,7 @@ function setupSubscribe() {
 function setupDonate() {
   const widget = document.querySelector("[data-donate]");
   if (!widget) return;
+  labelFields(widget);
   let amount = 100;
   let frequency = "one-time";
   const custom = widget.querySelector("#custom-amount");
@@ -397,13 +390,28 @@ function setupDonate() {
     update();
   });
 
-  widget.querySelector("[data-give]").addEventListener("click", () => {
+  // After a successful pledge, go back to the default gift.
+  widget.addEventListener("reset", () => {
+    amount = 100;
+    frequency = "one-time";
+    press(".choice", widget.querySelector('.choice[data-amount="100"]'));
+    press(".segmented button", widget.querySelector('[data-frequency="one-time"]'));
+    update();
+  });
+
+  widget.addEventListener("submit", event => {
+    event.preventDefault();
     if (!amount) { custom.focus(); return; }
-    const body = `I'd like to give ${summary.textContent} to ${CONFIG.name}. Please let me know how to complete my gift.`;
-    showStatus(widget, `
-      <p><strong>Thank you for your generosity!</strong> Secure online giving is coming soon.
-      Until then, send us a note and we’ll follow up with ways to complete your gift.</p>
-      <a class="btn" href="${mailtoLink(`Donation — ${CONFIG.name}`, body)}">Email us about my gift</a>`);
+    if (!widget.reportValidity()) return;
+    const gift = summary.textContent;
+    sendForm(widget, {
+      subject: `Donation pledge (${gift}): ${senderName(widget)}`,
+      fields: { Gift: gift, ...formFields(widget) },
+      success: `<p><strong>Thank you for your generosity!</strong> Secure online giving is coming soon.
+        We’ve received your pledge and will email you with ways to complete your gift.</p>`,
+      fallbackSubject: `Donation — ${CONFIG.name}`,
+      fallbackBody: `I'd like to give ${gift} to ${CONFIG.name}. Please let me know how to complete my gift.\n\n${formToText(widget)}`
+    });
   });
 
   update();
@@ -421,5 +429,4 @@ renderFooter();
 fillContactDetails();
 setupNav();
 setupForms();
-setupSubscribe();
 setupDonate();
