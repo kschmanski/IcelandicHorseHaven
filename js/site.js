@@ -42,7 +42,7 @@ const NAV = [
       { label: "Sponsor a Horse", href: "sponsor.html" }
     ]
   },
-  { label: "Rehome a Horse", href: "rehoming.html" },
+  { label: "Request Support", href: "request-support.html" },
   {
     label: "How to Help",
     children: [
@@ -109,7 +109,7 @@ function renderHeader() {
           <span class="brand-name">${CONFIG.name}<small>${CONFIG.tagline}</small></span>
         </a>
         <div class="header-actions">
-          <a class="btn btn-outline" href="rehoming.html">Request Help for a Horse</a>
+          <a class="btn btn-outline" href="request-support.html">Request Help for a Horse</a>
           <a class="btn" href="donate.html">Donate</a>
           <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Menu">${ICONS.menu}</button>
         </div>
@@ -153,7 +153,7 @@ function renderFooter() {
               <ul>
                 <li><a href="horses.html">Meet Our Horses</a></li>
                 <li><a href="adopt.html">Adoption Process</a></li>
-                <li><a href="rehoming.html">Rehome a Horse</a></li>
+                <li><a href="request-support.html">Request Support</a></li>
               </ul>
             </div>
             <div>
@@ -328,9 +328,33 @@ async function sendForm(form, { subject, fields, success, fallbackSubject, fallb
   }
 }
 
+// Extra rules the browser can't express on its own:
+// - fieldset[data-require-one]: at least one checkbox in the group must be checked.
+// - [data-required-unless="role=Owner"]: required unless that radio choice is picked.
+function setupValidation(form) {
+  const rules = [];
+
+  form.querySelectorAll("fieldset[data-require-one]").forEach(group => {
+    const boxes = [...group.querySelectorAll('input[type="checkbox"]')];
+    rules.push(() => boxes[0].setCustomValidity(boxes.some(b => b.checked) ? "" : "Please choose at least one option."));
+  });
+
+  form.querySelectorAll("[data-required-unless]").forEach(el => {
+    const [name, value] = el.dataset.requiredUnless.split("=");
+    rules.push(() => { el.required = form.elements[name]?.value !== value; });
+  });
+
+  if (!rules.length) return;
+  const check = () => rules.forEach(rule => rule());
+  form.addEventListener("change", check);
+  form.addEventListener("reset", () => setTimeout(check));
+  check();
+}
+
 function setupForms() {
   document.querySelectorAll("form[data-form]").forEach(form => {
     labelFields(form);
+    setupValidation(form);
 
     form.addEventListener("submit", event => {
       event.preventDefault();
