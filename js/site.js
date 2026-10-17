@@ -43,6 +43,7 @@ const NAV = [
     ]
   },
   { label: "Request Support", href: "request-support" },
+  { label: "When Is a Horse in Need", href: "horse-in-need" },
   {
     label: "How to Help",
     children: [
@@ -156,6 +157,7 @@ function renderFooter() {
                 <li><a href="horses">Meet Our Horses</a></li>
                 <li><a href="adopt">Adoption Process</a></li>
                 <li><a href="request-support">Request Support</a></li>
+                <li><a href="horse-in-need">When Is a Horse in Need</a></li>
               </ul>
             </div>
             <div>
