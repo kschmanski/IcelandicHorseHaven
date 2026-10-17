@@ -147,7 +147,7 @@ function renderFooter() {
                 <img src="images/logo-emblem.png" alt="" width="64" height="64" loading="lazy">
                 <h4>${CONFIG.name}</h4>
               </div>
-              <p>A safety net for Icelandic horses across the United States.</p>
+              <p>A lifelong safe haven for Icelandic horses in need.</p>
               <p class="mt-1"><a href="mailto:${CONFIG.email}">${CONFIG.email}</a>${CONFIG.phone ? `<br>${CONFIG.phone}` : ""}</p>
               ${socials ? `<div class="socials">${socials}</div>` : ""}
             </div>
