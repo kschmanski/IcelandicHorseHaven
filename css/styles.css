@@ -266,6 +266,16 @@ p + p { margin-top: 1rem; }
 .submenu a:hover,
 .submenu [aria-current="page"] { color: var(--accent); background: var(--band); text-decoration: none; }
 
+/* Tighten the menu so it stays on one line on narrower desktops. */
+@media (min-width: 901px) and (max-width: 1199px) {
+  .main-nav a,
+  .main-nav .sub-toggle { padding: 0.8rem 0.55rem; letter-spacing: 0.05em; }
+}
+@media (min-width: 901px) and (max-width: 999px) {
+  .main-nav a,
+  .main-nav .sub-toggle { padding: 0.8rem 0.4rem; letter-spacing: 0.03em; font-size: 0.74rem; }
+}
+
 @media (hover: hover) and (min-width: 901px) {
   .has-sub:hover > .submenu { display: block; }
 }
