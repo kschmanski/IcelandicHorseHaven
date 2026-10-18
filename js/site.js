@@ -43,7 +43,7 @@ const NAV = [
     ]
   },
   { label: "Request Support", href: "request-support" },
-  { label: "When Is a Horse in Need", href: "horse-in-need" },
+  { label: "When Is a Horse in Need?", href: "horse-in-need" },
   {
     label: "How to Help",
     children: [
@@ -157,7 +157,7 @@ function renderFooter() {
                 <li><a href="horses">Meet Our Horses</a></li>
                 <li><a href="adopt">Adoption Process</a></li>
                 <li><a href="request-support">Request Support</a></li>
-                <li><a href="horse-in-need">When Is a Horse in Need</a></li>
+                <li><a href="horse-in-need">When Is a Horse in Need?</a></li>
               </ul>
             </div>
             <div>
@@ -382,7 +382,9 @@ function setupDonate() {
   const widget = document.querySelector("[data-donate]");
   if (!widget) return;
   labelFields(widget);
-  let amount = 100;
+  // The button marked aria-pressed="true" in the page is the default gift.
+  const defaultChoice = widget.querySelector('.choice[aria-pressed="true"]');
+  let amount = Number(defaultChoice.dataset.amount);
   let frequency = "one-time";
   const custom = widget.querySelector("#custom-amount");
   const summary = widget.querySelector("[data-summary]");
@@ -420,9 +422,9 @@ function setupDonate() {
 
   // After a successful pledge, go back to the default gift.
   widget.addEventListener("reset", () => {
-    amount = 100;
+    amount = Number(defaultChoice.dataset.amount);
     frequency = "one-time";
-    press(".choice", widget.querySelector('.choice[data-amount="100"]'));
+    press(".choice", defaultChoice);
     press(".segmented button", widget.querySelector('[data-frequency="one-time"]'));
     update();
   });
